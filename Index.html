@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Tahun Baru Rahma!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #141E30, #243B55);
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: explode 1.5s infinite;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeIn 2s;
+            color: #FFD700;
+        }
+
+        .name {
+            color: #FF69B4;
+            font-size: 3rem;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s infinite;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin: 2rem 0;
+            animation: slideUp 1s ease-out;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .special-message {
+            color: #FFB6C1;
+            font-style: italic;
+            margin: 1.5rem 0;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px rgba(255,182,193,0.5);
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            background: white;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite;
+        }
+
+        .signature {
+            margin-top: 2rem;
+            font-style: italic;
+            opacity: 0.9;
+            animation: fadeIn 3s;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #FF69B4; }
+            50% { text-shadow: 0 0 20px #FF69B4, 0 0 30px #FF69B4; }
+            100% { text-shadow: 0 0 10px #FF69B4; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) translateY(0); opacity: 0; }
+            50% { transform: scale(1) translateY(-20px); opacity: 1; }
+            100% { transform: scale(0) translateY(-40px); opacity: 0; }
+        }
+
+        .year {
+            font-size: 4rem;
+            color: #FFD700;
+            margin: 1rem 0;
+            font-weight: bold;
+            text-shadow: 0 0 10px #FFD700;
+            animation: scaleYear 2s infinite;
+        }
+
+        @keyframes scaleYear {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+        }
+
+        .wishes {
+            margin: 1.5rem 0;
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Selamat Tahun Baru ✨</h1>
+        <div class="name">Rahma</div>
+        <div class="year">2025</div>
+        <div class="message">
+            <p>Hai Rahma! <span class="emoji">🌟</span></p>
+            <br>
+            <p>Di penghujung tahun 2024 dan menyambut tahun 2025,
+            aku ingin mengucapkan terima kasih karena telah menjadi
+            orang yang bisa membuatku bahagia kembali.</p>
+            <br>
+            <p class="special-message">Kehadiranmu membawa warna baru dalam hidupku,
+            dan senyummu selalu bisa membuat hariku lebih cerah.</p>
+            <br>
+            <div class="wishes">
+                <p>Di tahun yang baru ini, aku berharap kamu:</p>
+                <p><span class="emoji">✨</span> Selalu diberikan kebahagiaan yang berlimpah</p>
+                <p><span class="emoji">🌈</span> Dipenuhi dengan momen-momen indah</p>
+                <p><span class="emoji">🌺</span> Sukses dalam semua yang kamu impikan</p>
+                <p><span class="emoji">💫</span> Selalu dilindungi dan diberikan kesehatan</p>
+            </div>
+            <br>
+            <p>Terima kasih telah menjadi bagian dari perjalananku di tahun 2024.
+            Mari sambut 2025 dengan semangat dan harapan baru!</p>
+        </div>
+        <div class="signature">
+            <p>Dari seseorang yang selalu mendoakan yang terbaik untukmu,</p>
+            <p>[Fasha kamil Ihsan]</p>
+        </div>
+    </div>
+    <div class="sparkles" id="sparkles"></div>
+
+    <script>
+        function createSparkles() {
+            const sparklesContainer = document.getElementById('sparkles');
+            const numberOfSparkles = 50;
+
+            for (let i = 0; i < numberOfSparkles; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                sparklesContainer.appendChild(sparkle);
+            }
+        }
+
+        createSparkles();
+    </script>
+</body>
+</html>
